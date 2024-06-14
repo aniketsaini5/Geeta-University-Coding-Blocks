@@ -19,13 +19,40 @@
 
 // //incomple
 
-
-
-#include<iostream>
+#include<bits/stdc++.h>
 using namespace std;
+int ToDecimal(int sn, int sb) {
+    int dec_no = 0;
+    int p = 0;
+    
+    while (sn > 0) {
+        int ld = sn % 10;
+        sn = sn / 10;
+        dec_no += ld * pow(sb, p);
+        p++;
+    }
+    
+    return dec_no;
+}
+
+string ToAnyBase(int Decimal_No, int db){
+	string result = "";
+	while(Decimal_No>0){
+		int rem = Decimal_No % db;
+		result = to_string(rem)+result;
+		Decimal_No /=db;
+	}
+	return result;
+}
+
+
 int main() {
+    int sb, db, sn;
+    cin >> sb >> db >> sn;
+    int dn = ToDecimal(sn, sb);
+    string res = ToAnyBase(dn, db);
 
-
-
-	return 0;
+    cout << res << endl;
+    
+    return 0;
 }
