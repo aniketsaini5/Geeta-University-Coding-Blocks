@@ -1,42 +1,25 @@
-// #include <iostream>
-// using namespace std;
+// Take N (number of rows), print the following pattern (for N = 4).
 
-// void printPattern(int n) {
-//     int startNum = 1;
+//                        1 
+//                      2 3 2
+//                    3 4 5 4 3
+//                  4 5 6 7 6 5 4
+// Input Format
+// Constraints
+// 0 < N < 10
 
-//     for (int i = 0; i < n; ++i) {
-//         // Leading spaces calculate karte hain
-//         int leadingSpaces = (n - i - 1) * 2;
-        
-//         // Leading spaces print karte hain
-//         for (int j = 0; j < leadingSpaces; ++j) {
-//             cout << " ";
-//         }
-        
-//         // Current row ka starting number calculate karte hain
-//         int NUM = startNum + i;
-        
-//         // Numbers print karte hain
-//         for (int j = 0; j < 2 * i + 1; ++j) {
-//             if (j <= i) {
-//                 cout << NUM + j << " ";
-//             } else {
-//                 cout << NUM + (2 * i - j) << " ";
-//             }
-//         }
-        
-//         // New line ke liye
-//         cout << endl;
-//     }
-// }
+// Output Format
+// Sample Input
+// 4
+// Sample Output
+//                      1
+// 		2	3	2
+// 	3	4	5	4	3
+// 4	5	6	7	6	5	4
+// Explanation
+// Each number is separated from other by a tab.
 
-// int main() {
-//     int n;
-//     cin>>n;
 
-//     printPattern(n);
-//     return 0;
-// }
 
 
 #include <iostream>
