@@ -20,33 +20,41 @@
 
 //////////////////////////////////////////////
 
- //          UNSOLVED  ///
-
  ///////////////////////////////////////////////
 
 #include<bits/stdc++.h>
 using namespace std;
 
-void  check_have_vowel(string str){
-     char goodStr [] = {'a','e','i','o','u'};
-	 //code
-
+bool  check(char ch){
+   if (ch=='a' ||ch=='e' || ch=='i' || ch=='o' || ch=='u' ) return true;
+   return false;
 }
-void SubStr(string s){
+int SubStr(string s){
 	int n = s.size();
+	int ans=0;
 	for(int i =0;i<n ;i++){
-		string substr = "";
-		for(int j =i; j<n;j++){
-			substr += s[j];
-			check_have_vowel(substr);
-			//cout<<substr<<endl;
+		string temp = "";
+		int j=i;
+		for( ; j<n;j++){
+			if(check(s[j])){
+				temp+=s[j];
+			}else{
+				break;
+			}
 		}
+	//	cout<<temp<<endl;
+		int len=temp.size();
+		if(len>ans){
+			ans=len;
+		}
+		i=j;
 	}
+	return ans;
 }
 int main() {
 	string s;
 	cin>>s;
-	SubStr(s);
+	cout<<SubStr(s)<<endl;
 	
 	return 0;
 }
