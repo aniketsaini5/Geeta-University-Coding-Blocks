@@ -25,29 +25,43 @@
 
 /////////////////////////////////////////////////////////////////////////////////////
 
-//             UNSOLVED       //
+//                 //
 
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
-void permutation(int arr[], int n){
-	int left = 0;
-	int right  = n-1;
-    // age ka code all permutaion nikalne k liye
-    
 
+bool compare(const string &X, const string &Y) {
+    return X + Y > Y + X;
 }
+
 int main() {
-	int T;
-	cin>>T;
-	while(T--){
-		int n;
-		cin>>n;
-		int arr[n];
-		for(int i =0 ; i< n;  i++){
-			cin>>arr[i];
-		}
-		permutation(arr,n);
-	}
-	
-	return 0;
+    int T;
+    cin >> T;
+    while (T--) {
+        int n;
+        cin >> n;
+        int arr[n];
+        for (int i = 0; i < n; i++) {
+            cin >> arr[i];
+        }
+        string s[n];
+        for (int i = 0; i < n; i++) {
+            s[i] = to_string(arr[i]);
+        }
+
+        for (int i = 0; i < n - 1; i++) {
+            for (int j = 0; j < n - i - 1; j++) {
+                if (!compare(s[j], s[j + 1])) {
+                    swap(s[j], s[j + 1]);
+                }
+            }
+        }
+
+        for (int i = 0; i < n; i++) {
+            cout << s[i];
+        }
+        cout << endl;
+    }
+
+    return 0;
 }
