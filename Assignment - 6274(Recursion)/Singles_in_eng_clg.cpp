@@ -33,7 +33,139 @@
 // // 6
 // // Sample Output
 // // 14
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+// ### Algorithm and Code Explanation 
+
+// #### Problem Explanation
+// Jeffrey Vandersay ke paas kuch ped hain jinke height diye gaye hain. Jeffrey ko kuch specific height ka lakdi katna hai. Jeffrey apne machine ka height set karta hai aur us height se upar ka hissa kat leta hai. Hume maximum height pata karna hai jaha machine ko set karke kam se kam `x` meter lakdi kat sakte hain.
+
+// #### Approach
+// 1. **Binary Search Approach**:
+//    - Maximum height nikalne ke liye hum binary search use karenge.
+//    - Hum minimum aur maximum height define karenge (`lo` and `hi`).
+//    - Mid-point calculate karke check karenge ki us height pe kitna lakdi katega.
+//    - Agar required lakdi mid height pe mil gaya ya zyada mil gaya to hum height ko increase kar sakte hain, otherwise height ko kam karenge.
+
+// 2. **Wood Calculation Function**:
+//    - Ek function `wood` likhenge jo kisi particular height `max_high` pe kitna lakdi katega calculate karega.
+
+// 3. **Binary Search Implementation**:
+//    - `MAX_H` function likhenge jo binary search ko recursively implement karega.
+
+// #### Code Explanation
+
+// #include <bits/stdc++.h>
+// using namespace std;
+
+// // Function to calculate total wood collected if cut at max_high
+// long long wood(vector<int>& arr, int max_high) {
+//     long long total_wood = 0;
+//     for (long long i = 0; i < arr.size(); i++) {
+//         if (arr[i] > max_high) {
+//             total_wood += arr[i] - max_high;
+//         }
+//     }
+//     return total_wood;
+// }
+
+// // Binary search function to find maximum height
+// int MAX_H(vector<int>& arr, int lo, int hi, int x) {
+//     if (lo > hi) {
+//         return hi; 
+//     }
+//     int mid = (lo + hi) / 2;
+//     long long T_wood = wood(arr, mid);
+//     if (T_wood >= x) {
+//         return MAX_H(arr, mid + 1, hi, x);
+//     } else {
+//         return MAX_H(arr, lo, mid - 1, x);
+//     }
+// }
+
+// int main() {
+//     int n;
+//     cin >> n;
+//     vector<int> arr(n);
+//     for (int i = 0; i < n; i++) {
+//         cin >> arr[i];
+//     }
+//     int x;
+//     cin >> x;
+//     sort(arr.begin(), arr.end());
+//     int lo = 0;
+//     int hi = arr.back(); 
+//     int result = MAX_H(arr, lo, hi, x);
+//     cout << result << endl;
+//     return 0;
+// }
+// ```
+
+// ### Explanation in Hinglish:
+
+// 1. **`wood` Function**:
+//    - `wood` function ka kaam hai ki agar machine ko `max_high` height pe set kiya jaye, to kitna total lakdi katega.
+//    - Loop chalake check karte hain ki har tree ki height `max_high` se badi hai ya nahi. Agar haan, to `total_wood` mein `arr[i] - max_high` add karte hain.
+
+// 2. **`MAX_H` Function**:
+//    - Ye function binary search ka use karke maximum height find karta hai jaha `x` meter lakdi katega.
+//    - `lo` aur `hi` ko define karte hain, phir mid-point nikalke check karte hain `wood` function se ki mid height pe kitna lakdi katega.
+//    - Agar mid height pe required `x` meter ya zyada lakdi mil jata hai to height ko increase karke recursion call karte hain (`mid + 1` se `hi` tak).
+//    - Agar kam lakdi milta hai to height ko decrease karte hain (`lo` se `mid - 1` tak).
+
+// 3. **`main` Function**:
+//    - `main` function mein pehle `n` aur `x` input lete hain.
+//    - Fir tree heights ko input leke `arr` vector mein store karte hain.
+//    - Heights ko sort karte hain aur `lo` ko 0 aur `hi` ko maximum height (`arr.back()`) set karte hain.
+//    - `MAX_H` function ko call karke result ko print karte hain.
+
+// ### Dry Run:
+// Sample Input:
+// ```
+// 4
+// 15 19 12 13
+// 6
+// ```
+
+// 1. **Initial Setup**:
+//    - Heights: [15, 19, 12, 13]
+//    - Required Wood: 6
+
+// 2. **Sort Heights**:
+//    - Sorted Heights: [12, 13, 15, 19]
+
+// 3. **Binary Search**:
+//    - Initial `lo` = 0, `hi` = 19
+//    - Mid = (0 + 19) / 2 = 9
+//    - Calculate wood for height 9:
+//      - Heights above 9: [12, 13, 15, 19]
+//      - Wood collected: (12-9) + (13-9) + (15-9) + (19-9) = 3 + 4 + 6 + 10 = 23 (>= 6, increase height)
+//    - New `lo` = 10, `hi` = 19
+//    - Mid = (10 + 19) / 2 = 14
+//    - Calculate wood for height 14:
+//      - Heights above 14: [15, 19]
+//      - Wood collected: (15-14) + (19-14) = 1 + 5 = 6 (== 6, increase height)
+//    - New `lo` = 15, `hi` = 19
+//    - Mid = (15 + 19) / 2 = 17
+//    - Calculate wood for height 17:
+//      - Heights above 17: [19]
+//      - Wood collected: (19-17) = 2 (< 6, decrease height)
+//    - New `lo` = 15, `hi` = 16
+//    - Mid = (15 + 16) / 2 = 15
+//    - Calculate wood for height 15:
+//      - Heights above 15: [19]
+//      - Wood collected: (19-15) = 4 (< 6, decrease height)
+//    - New `lo` = 15, `hi` = 14
+
+// End result: Maximum height where required wood (6 meters) can be collected is 14.
+
+// Output:
+// ```
+// 14
+// ```
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 #include <bits/stdc++.h>
 using namespace std;
