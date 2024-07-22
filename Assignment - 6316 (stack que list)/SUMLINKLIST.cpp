@@ -80,7 +80,7 @@ public:
     }
 
     node* sum(node *h1, node *h2) {
-        int carry = 0;
+        int carry = carry;
         node *dummy = new node(-1);
         node *current = dummy;
 
