@@ -16,57 +16,61 @@
 // true
 // Explanation
 // The given two trees have the exact same structure and hence we print true.
-
-
 #include <bits/stdc++.h>
 using namespace std;
 
-class node {
+class Node {
 public:
-    int data;
-    node *left;
-    node *right;
+    string data;
+    Node* left;
+    Node* right;
 
-    node(int val) {
+    Node(string val) {
         data = val;
         left = NULL;
         right = NULL;
     }
 };
 
-// Function to build the tree from pre-order input
-node* BuildTreePreOrder() {
-    string s;
-    cin >> s;
-    if (s == "true") {
-        int d;
-        cin >> d;
-        node* root = new node(d);
+Node* BuildTreePreOrder() {
+    string val;
+    cin >> val;
 
+    if (val == "false") return NULL;
+
+    Node* root = new Node(val);
+
+    string leftNode, rightNode;
+    cin >> leftNode;
+    if (leftNode == "true") {
         root->left = BuildTreePreOrder();
-        root->right = BuildTreePreOrder();
-
-        return root;
+    } else {
+        root->left = NULL;
     }
-    return NULL;
+    cin >> rightNode;
+    if (rightNode == "true") {
+        root->right = BuildTreePreOrder();
+    } else {
+        root->right = NULL;
+    }
+
+    return root;
 }
 
-// Function to check if two trees are identical
-bool isIdentical(node* r1, node* r2) {
-    if (r1 == NULL && r2 == NULL)
-        return true;
-    if (r1 == NULL || r2 == NULL)
-        return false;
+bool isIdentical(Node* r1, Node* r2) {
+    if (r1 == NULL && r2 == NULL) return true;
+
+    if (r1 == NULL || r2 == NULL) return false;
 
     bool lft = isIdentical(r1->left, r2->left);
     bool rst = isIdentical(r1->right, r2->right);
 
-    return (r1->data == r2->data) && lft && rst;
+    return lft && rst;
 }
 
 int main() {
-    node* root1 = BuildTreePreOrder();
-    node* root2 = BuildTreePreOrder();
+    Node* root1 = BuildTreePreOrder();
+    Node* root2 = BuildTreePreOrder();
 
     if (isIdentical(root1, root2)) {
         cout << "true";
